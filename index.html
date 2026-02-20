@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Allergy Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Food Allergy Detection System</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- Name -->
+        <label>Your Name:</label>
+        <input type="text" name="name" required>
+
+        <!-- Severity -->
+        <label>Allergy Severity:</label>
+        <select name="severity">
+            <option value="mild">Mild</option>
+            <option value="moderate">Moderate</option>
+            <option value="severe">Severe</option>
+        </select>
+
+        <hr>
+
+        <h3>Select Allergens</h3>
+
+        <!-- MILK to ACIDIFIERS (Main Only) -->
+
+        <div class="checkbox-group">
+            <input type="checkbox" name="allergens" value="milk"> Milk <br>
+            <input type="checkbox" name="allergens" value="egg"> Egg <br>
+            <input type="checkbox" name="allergens" value="soy"> Soy <br>
+            <input type="checkbox" name="allergens" value="peanut"> Peanut <br>
+            <input type="checkbox" name="allergens" value="wheat"> Wheat <br>
+            <input type="checkbox" name="allergens" value="sesame"> Sesame <br>
+            <input type="checkbox" name="allergens" value="mustard"> Mustard <br>
+            <input type="checkbox" name="allergens" value="celery"> Celery <br>
+            <input type="checkbox" name="allergens" value="sulphites"> Sulphites <br>
+            <input type="checkbox" name="allergens" value="lupin"> Lupin <br>
+            <input type="checkbox" name="allergens" value="corn"> Corn <br>
+            <input type="checkbox" name="allergens" value="chocolate"> Chocolate <br>
+            <input type="checkbox" name="allergens" value="yeast"> Yeast <br>
+            <input type="checkbox" name="allergens" value="caffeine"> Caffeine <br>
+            <input type="checkbox" name="allergens" value="artificial colors"> Artificial Colors <br>
+            <input type="checkbox" name="allergens" value="artificial preservatives"> Artificial Preservatives <br>
+            <input type="checkbox" name="allergens" value="acidifiers"> Acidifiers <br>
+        </div>
+
+        <hr>
+
+        <!-- FISH WITH SUBCATEGORY -->
+
+        <div class="dropdown">
+            <input type="checkbox" name="allergens" value="fish"> Fish
+            <button type="button" onclick="toggle('fishList')">▼</button>
+
+            <div id="fishList" class="dropdown-content">
+                <input type="checkbox" name="allergens" value="salmon"> Salmon <br>
+                <input type="checkbox" name="allergens" value="tuna"> Tuna <br>
+                <input type="checkbox" name="allergens" value="cod"> Cod <br>
+                <input type="checkbox" name="allergens" value="anchovy"> Anchovy <br>
+                <input type="checkbox" name="allergens" value="haddock"> Haddock <br>
+                <input type="checkbox" name="allergens" value="sardine"> Sardine <br>
+                <input type="checkbox" name="allergens" value="trout"> Trout <br>
+            </div>
+        </div>
+
+        <!-- SHELLFISH WITH SUBCATEGORY -->
+
+        <div class="dropdown">
+            <input type="checkbox" name="allergens" value="shellfish"> Shellfish
+            <button type="button" onclick="toggle('shellList')">▼</button>
+
+            <div id="shellList" class="dropdown-content">
+                <input type="checkbox" name="allergens" value="shrimp"> Shrimp <br>
+                <input type="checkbox" name="allergens" value="crab"> Crab <br>
+                <input type="checkbox" name="allergens" value="lobster"> Lobster <br>
+                <input type="checkbox" name="allergens" value="scallops"> Scallops <br>
+                <input type="checkbox" name="allergens" value="lobster"> Lobster <br>
+                <input type="checkbox" name="allergens" value="mussel"> Mussel <br>
+                <input type="checkbox" name="allergens" value="oyster"> Oyster <br>
+            </div>
+        </div>
+
+        <!-- TREE NUT WITH SUBCATEGORY -->
+
+        <div class="dropdown">
+            <input type="checkbox" name="allergens" value="tree nut"> Tree Nut
+            <button type="button" onclick="toggle('nutList')">▼</button>
+
+            <div id="nutList" class="dropdown-content">
+                <input type="checkbox" name="allergens" value="almond"> Almond <br>
+                <input type="checkbox" name="allergens" value="cashew"> Cashew <br>
+                <input type="checkbox" name="allergens" value="walnut"> Walnut <br>
+                <input type="checkbox" name="allergens" value="pecan"> Pecan <br>
+                <input type="checkbox" name="allergens" value="pistachio"> Pistachio <br>
+                <input type="checkbox" name="allergens" value="hazelnut"> Hazelnut <br>
+                <input type="checkbox" name="allergens" value="macadamia"> Macadamia <br>
+                <input type="checkbox" name="allergens" value="brazil nut"> Brazil Nut <br>
+                <input type="checkbox" name="allergens" value="pine nut"> Pine Nut <br>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- IMAGE UPLOAD -->
+
+        <label>Upload Food Label Image:</label>
+        <input type="file" name="image" required>
+
+        <br><br>
+
+        <label>Upload Medical Report (Optional):</label>
+        <input type="file" name="medical_report">
+
+        <br><br>
+
+        <button type="submit" class="submit-btn">Scan</button>
+
+    </form>
+
+    <!-- RESULT SECTION -->
+
+    {% if result %}
+        <div class="result-box">
+            Result: {{ result }} <br><br>
+
+            {% if detected %}
+                Detected: {{ detected | join(', ') }}
+            {% endif %}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
