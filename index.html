@@ -120,22 +120,30 @@
 
         <br><br>
 
-        <button type="submit" class="submit-btn">Scan</button>
+        <button type="button" class="submit-btn"onclick="showResult()">Scan</button>
 
     </form>
 
     <!-- RESULT SECTION -->
 
-    {% if result %}
-        <div class="result-box">
-            Result: {{ result }} <br><br>
-
-            {% if detected %}
-                Detected: {{ detected | join(', ') }}
-            {% endif %}
-        </div>
-    {% endif %}
-
+<div id="resultBox" class="result-box" style="display:none; margin-top:40px; padding:25px; background-color:#f9f9f9; border-radius:12px;">
+    <h3 style="color:#333;">Scan Results</h3>
+    
+    <div style="margin-bottom:20px; padding:15px; background-color:#fffde7; border-left:4px solid #fbc02d; border-radius:4px;">
+        <h4 style="color:#333; margin-top:0;">Allergen Names Found:</h4>
+        <ul id="allergenList" style="padding-left:20px; color:#333; margin:10px 0;"></ul>
+    </div>
+    
+    <div style="margin-bottom:20px; padding:15px; background-color:#e3f2fd; border-left:4px solid #2196f3; border-radius:4px;">
+        <h4 style="color:#333; margin-top:0;">Severity Level:</h4>
+        <p style="color:#333; font-size:18px; margin:10px 0;"><strong>Status: <span id="riskLevel" style="font-size:20px;"></span></strong></p>
+    </div>
+    
+    <div class="stats-panel" style="margin-top:20px; padding:15px 20px; background-color:#f4f6f8; border-radius:10px; display:flex; gap:30px; flex-wrap:wrap;">
+        <p style="color:#333; margin:8px 0;"><strong>Total Ingredients:</strong> <span id="totalCount" style="font-weight:bold; font-size:16px; color:#2196f3;"></span></p>
+        <p style="color:#333; margin:8px 0;"><strong>Allergens Detected:</strong> <span id="allergenCount" style="font-weight:bold; font-size:16px; color:#ff6f00;"></span></p>
+        <p style="color:#333; margin:8px 0;"><strong>Safety Percentage:</strong> <span id="safetyPercent" style="font-weight:bold; font-size:16px; color:#4caf50;"></span></p>
+    </div>
 </div>
 
 </body>
