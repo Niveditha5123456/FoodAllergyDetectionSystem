@@ -42,22 +42,62 @@ specific_allergens = {
 
 # ---------------- DATABASE ----------------
 def init_db():
-    conn = sqlite3.connect("database.db")
-    c = conn.cursor()
-    c.execute("""
-        CREATE TABLE IF NOT EXISTS scans (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            detected TEXT,
-            risk TEXT,
-            safety_percent REAL
-        )
-    """)
+    conn = sqlite3.connect('allergens.db')
+    cursor = conn.cursor()
+
+    # Create users table
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS users (
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     name TEXT,
+     allergens TEXT
+    )
+    ''')
+
+    
+    # Create scans table
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS scans (
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     user_id INTEGER,
+     scanned_ingredients TEXT,
+     detected_allergens TEXT,
+     risk_level TEXT,
+     safety_score INTEGER,
+     scan_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    ''')
+
+    conn.commit()
+    conn.close()
+init_db()
+
+def save_scan(user_id, ingredients, detected, risk, safety):
+    conn = sqlite3.connect('allergens.db')
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        INSERT INTO scans (user_id, scanned_ingredients, detected_allergens, risk_level, safety_score)
+        VALUES (?, ?, ?, ?, ?)
+    ''', (user_id, ','.join(ingredients), ','.join(detected), risk, safety))
+
     conn.commit()
     conn.close()
 
-init_db()
+def get_scan_history(user_id):
+    conn = sqlite3.connect('allergens.db')
+    cursor = conn.cursor()
 
+    cursor.execute('''
+        SELECT scanned_ingredients, detected_allergens, risk_level, safety_score, scan_date
+        FROM scans
+        WHERE user_id=?
+        ORDER BY scan_date DESC
+    ''', (user_id,))
+
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
 # ---------------- ROUTE ----------------
 @app.route("/", methods=["GET","POST"])
 def index():
