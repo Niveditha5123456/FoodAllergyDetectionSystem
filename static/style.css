@@ -1,7 +1,8 @@
 /* -------- GENERAL -------- */
 
 body {
-    background: url("../bg.jpg") no-repeat center center fixed;
+    background: url("bg.jpg") no-repeat center center fixed;
+    background-color: #0f1720;
     background-size: cover;
     font-family: 'Segoe UI', sans-serif;
     color: #ffffff;
