@@ -23,14 +23,14 @@ OCR Engine: PyTesseract.
 Database: SQLite3.
 Version Control: Git & GitHub.
 
- How It Works
+ How It Works:
 User uploads a food label image.
 OCR extracts ingredient text.
 System matches ingredients with allergen categories.
 Risk level is calculated based on detected allergens.
 Results are displayed with severity color coding and statistics
 
- Future Enhancements
+ Future Enhancements:
 AI-based ingredient recognition improvement,
 User profile with personal allergy storage,
 Real-time barcode scanning,
