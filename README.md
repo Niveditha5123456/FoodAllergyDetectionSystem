@@ -31,8 +31,8 @@ Risk level is calculated based on detected allergens.
 Results are displayed with severity color coding and statistics
 
  Future Enhancements
-AI-based ingredient recognition improvement
-User profile with personal allergy storage
-Real-time barcode scanning
-Cloud database integration
+AI-based ingredient recognition improvement,
+User profile with personal allergy storage,
+Real-time barcode scanning,
+Cloud database integration,
 Mobile application version
