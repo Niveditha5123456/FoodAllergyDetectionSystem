@@ -1,4 +1,4 @@
-Food Allergy Detection System
+Food Allergy Detection System:
 The Food Allergy Detection System is a web-based application that helps users identify potential allergens present in packaged food products.
 The system uses OCR (Optical Character Recognition) to extract ingredient text from uploaded food label images and compares it with predefined allergen categories to determine risk levels.
 This project is designed to improve food safety awareness and assist individuals with mild, moderate, or severe allergies in making informed dietary decisions.
