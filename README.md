@@ -12,8 +12,8 @@ Color-coded Risk Display
 🟡 Yellow → Medium
 🔴 Red → High,
 Status Panel showing:
-Total Ingredients
-Allergens Detected
+Total Ingredients,
+Allergens Detected,
 Safety Percentage
 
 Technologies Used:
